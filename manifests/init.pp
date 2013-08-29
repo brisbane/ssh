@@ -31,4 +31,7 @@ class ssh (
     hasstatus  => true,
     subscribe => Package['openssh'],
   }
+  if $enable_authorized_keys {
+    ssh::auth_key { $authorized_keys:} 
+  }
 }
