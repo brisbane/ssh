@@ -1,4 +1,4 @@
-class sshd::service () inherits ssh::params
+class ssh::service () inherits ssh::params
 {
   service { 'sshd':
     name       => 'sshd',
@@ -8,4 +8,4 @@ class sshd::service () inherits ssh::params
     hasstatus  => true,
     subscribe => Package['openssh'],
   }
-
+}

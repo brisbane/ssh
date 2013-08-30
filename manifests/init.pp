@@ -12,13 +12,14 @@
 #
 
 class ssh (
-  $sshd_parameters = $ssh::params::sshd_parameters
+  $sshd_parameters = $ssh::params::sshd_parameters,
+  $authorized_keys = $ssh::params::authorized_keys
 ) inherits ssh::params { 
   
   class {'ssh::install' :
   }
-  ssh::sshd_config {$sshd_parameters: } 
-  ssh::auth_key { $authorized_keys:} 
+  ssh::sshd_config { $sshd_parameters: } 
+  ssh::auth_key { $authorized_keys: } 
   class {'ssh::service' :
   }
 
