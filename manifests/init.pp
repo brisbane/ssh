@@ -12,26 +12,15 @@
 #
 
 class ssh (
-  $sshd_parameters = $ssh::params::sshd_parameters,
+  $sshd_parameters = $ssh::params::sshd_parameters
 ) inherits ssh::params { 
   
-  
-  $package_list = [ 'openssh', 'openssh-clients', 'openssh-server' ]
-  package { $package_list:
-    ensure => installed,
+  class {'ssh::install' :
   }
   ssh::sshd_config {$sshd_parameters: } 
+  ssh::auth_key { $authorized_keys:} 
+  class {'ssh::service' :
+  }
 
 
-  service { 'sshd':
-    name       => 'sshd',
-    ensure     => running,
-    enable     => true,
-    hasrestart => true,
-    hasstatus  => true,
-    subscribe => Package['openssh'],
-  }
-  if $enable_authorized_keys {
-    ssh::auth_key { $authorized_keys:} 
-  }
 }
