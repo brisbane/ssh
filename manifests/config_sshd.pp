@@ -1,4 +1,0 @@
-class ssh::config::sshd
-{
-
-}
