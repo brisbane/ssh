@@ -4,4 +4,10 @@ class ssh::params {
   $enable_authorized_keys = hiera('ssh::params::enable_authorized_keys', true)
   #This should be a hiera array variable, so that we get default with additions  behaviour
   $authorized_keys = hiera_array('ssh::params::authorized_keys', [] )
+  
+  # Enable or disable tcp_wrapper
+  $enable_tcp_wrapper = hiera ('ssh::params::enable_tcp_wrapper', true)
+  $allow  = hiera_hash ('ssh::params::tcp_wrapper_allow', {})
+  $deny  = hiera ('ssh::params::tcp_wrapper_deny', {}) 
+  
 }

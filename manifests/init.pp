@@ -25,4 +25,8 @@ class ssh (
   if $enable_authorized_keys {
     ssh::auth_key { $authorized_keys:}
   }
+  
+  if $enable_tcp_wrapper {
+    include tcp_wrapper
+  }
 }
