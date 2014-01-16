@@ -13,7 +13,7 @@
 
 class ssh (
   $sshd_parameters = $ssh::params::sshd_parameters,
-  $authorized_keys = $ssh::params::authorized_keys
+  $authorized_keys = $ssh::params::authorized_keys,
 ) inherits ssh::params { 
   
   include ssh::install
