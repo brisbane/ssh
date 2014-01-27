@@ -1,6 +1,6 @@
 class ssh::params {
   #This should be a hiera variable, so that we get default with overrides  behaviour
-  $sshd_parameters = hiera('ssh::params::sshd_parameters', 'undef')
+  $sshd_parameters = hiera('ssh::params::sshd_parameters', {})
   $ssh_parameters = hiera_hash('ssh::params::ssh_parameters', { })
                                        
   $enable_authorized_keys = hiera('ssh::params::enable_authorized_keys', true)
