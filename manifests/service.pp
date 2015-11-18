@@ -1,11 +1,11 @@
-class ssh::service () inherits ssh::params
+class ssh::service () inherits ssh::params 
 {
-  service { 'sshd':
-    name       => 'sshd',
+  service { $ssh_service:
+    name       => $ssh_service,
     ensure     => running,
     enable     => true,
     hasrestart => true,
     hasstatus  => true,
-    subscribe => Package['openssh'],
+    subscribe  => Package['openssh-server'],
   }
 }
