@@ -1,4 +1,4 @@
-class auth_key_file {
+class ssh::auth_key_file {
   
        @concat {'/root/.ssh/authorized_keys':
             owner => root,

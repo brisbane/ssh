@@ -27,6 +27,6 @@ class ssh (
   }
   
   if $enable_tcp_wrapper {
-    include tcp_wrapper
+    include ssh::tcp_wrapper
   }
 }
