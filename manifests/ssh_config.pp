@@ -18,7 +18,6 @@ define ssh::ssh_config::host($configs) {
       onlyif    => "match Host[.='$name'] size == 0",
 
   }
-
   ssh::ssh_config::hostparam { $configs[$name]: host=>$name }  
 
 }
@@ -34,11 +33,10 @@ class ssh::ssh_config ( $ssh_parameters = $ssh::params::ssh_parameters) inherits
  # $hashDefaults = {
  #   configs => []
  # }
-
   #Can also do this with create_resources, sort of, but need an extra hiera_hash
-  $keyscsv = inline_template("<%= ssh_parameters.keys.join(',') %>")
+  $keyscsv = inline_template("<%= @ssh_parameters.keys.join(',') %>")
   $keys = split ($keyscsv, ',' )
-  #notify { "$keys are keys": }
+  notify { "$keys are keys": }
   ssh::ssh_config::host {$keys :configs=>  $ssh_parameters}
 
 #  create_resources(ssh::ssh_config::host, $ssh_parameters, $hashDefaults)

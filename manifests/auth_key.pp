@@ -5,7 +5,8 @@ define ssh::auth_key($content="", $order=10) {
   realize Concat['/root/.ssh/authorized_keys']
         concat::fragment{"$name":
           target  => "/root/.ssh/authorized_keys",
-          source => "puppet:///${site_files}/$name",
+          source => "puppet:///$site_files/$name",
+#          source => "puppet:///modules/serve_files/$name",
         }
       }
   
